@@ -11,13 +11,13 @@ api = Flask(__name__)
 
 clients = [
     {
-        'num' : u'438-929-5968',
+        'num' : 4389295968,
         'nom': u'Gogo',
         'prenom' : u'Gaga'
     },
 
     {
-        'num' : u'438-900-9804',
+        'num' : 4389009804,
         'nom': u'Poto',
         'prenom' : u'Part'
     }
@@ -40,11 +40,11 @@ def get_client():
 
 
 @api.route('/todo/api/v1.0/client/<int:num_tel>', methods=['GET'])
-def get_client(num_tel):
-    client = [client for client in clients if client['num_tel'] == num_tel]
+def get_client_num(num_tel):
+    client = [client for client in clients if client['num'] == num_tel]
     if len(client) == 0:
         abort(404)
-    return jsonify({'task': client[0]})
+    return jsonify({'client': client[0]})
 
 
 if __name__ == '__main__':
