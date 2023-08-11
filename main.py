@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from flask import abort,make_response
+from flask import abort,make_response,request
 
 # This is a sample Python script.
 
@@ -46,6 +46,23 @@ def get_client_num(num_tel):
         abort(404)
     return jsonify({'client': client[0]})
 
+
+@api.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@api.route('/todo/api/v1.0/client', methods=['POST'])
+def create_client():
+    if not request.json or not 'num' in request.json:
+        abort(400)
+    client = {
+        'num': clients[-1]['num'] + 1,
+        'nom': request.json['nom'],
+        'prenom': request.json.get('prenom', "")
+    }
+    clients.append(client)
+    return jsonify({'client': client}), 201
 
 
 
