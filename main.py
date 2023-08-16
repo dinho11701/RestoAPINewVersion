@@ -64,7 +64,20 @@ def create_client():
     clients.append(client)
     return jsonify({'client': client}), 201
 
-
+@api.route('/todo/api/v1.0/client/<int:num>', methods=['PUT'])
+def update_client(num1):
+    client = [client for client in clients if client['num'] == num1]
+    if len(client) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+    if 'nom' in request.json and type(request.json['nom']) != unicode:
+        abort(400)
+    if 'prenom' in request.json and type(request.json['prenom']) is not unicode:
+        abort(400)
+    client[0]['nom'] = request.json.get('nom', client[0]['nom'])
+    client[0]['prenom'] = request.json.get('prenom', client[0]['prenom'])
+    return jsonify({'client': client[0]})
 
 if __name__ == '__main__':
     print_hi('PyCharm')
