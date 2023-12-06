@@ -83,6 +83,7 @@ def update_client(num):
 
 
 # A tester sur linux pour voir si ca supprime bien : curl -X DELETE http://localhost:5000/todo/api/v1.0/client/4389009804
+# Ca a bien marche
 @api.route('/todo/api/v1.0/client/<int:num>', methods=['DELETE'])
 def delete_task(num):
     client1 = [client1 for client1 in clients if client1['num'] == num]
