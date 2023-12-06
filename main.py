@@ -90,6 +90,8 @@ def delete_task(num):
     clients.remove(client1[0])
     return jsonify({'result': True})
 
+#ajout comment pour voir si ca push bien
+
 if __name__ == '__main__':
     print_hi('PyCharm')
     api.run(debug=True)
