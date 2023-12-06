@@ -81,7 +81,8 @@ def update_client(num):
 
     return jsonify({'client': client})
 
-#curl -X DELETE http://localhost:5000/todo/api/v1.0/client/4389009804
+
+# A tester sur linux pour voir si ca supprime bien : curl -X DELETE http://localhost:5000/todo/api/v1.0/client/4389009804
 @api.route('/todo/api/v1.0/client/<int:num>', methods=['DELETE'])
 def delete_task(num):
     client1 = [client1 for client1 in clients if client1['num'] == num]
@@ -90,7 +91,6 @@ def delete_task(num):
     clients.remove(client1[0])
     return jsonify({'result': True})
 
-#ajout comment pour voir si ca push bien
 
 if __name__ == '__main__':
     print_hi('PyCharm')
